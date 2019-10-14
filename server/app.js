@@ -4,6 +4,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var graphqlHTTP = require("express-graphql");
+var schema = require("./graphql/bookSchemas");
+var cors = require("cors");
 
 mongoose
   .connect("mongodb://localhost/node-graphql", {
@@ -21,6 +24,17 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
+
+app.use("*", cors());
+app.use(
+  "/graphql",
+  cors(),
+  graphqlHTTP({
+    schema: schema,
+    rootValue: global,
+    graphiql: true
+  })
+);
 
 app.use(logger("dev"));
 app.use(express.json());
