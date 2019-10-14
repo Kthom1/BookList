@@ -42,18 +42,12 @@ const Show = props => {
               </div>
               <div className="panel-body">
                 <dl>
-                  <dt>ISBN:</dt>
-                  <dd>{data.book.isbn}</dd>
                   <dt>Author:</dt>
                   <dd>{data.book.author}</dd>
                   <dt>Description:</dt>
                   <dd>{data.book.description}</dd>
                   <dt>Published Year:</dt>
                   <dd>{data.book.published_year}</dd>
-                  <dt>Publisher:</dt>
-                  <dd>{data.book.publisher}</dd>
-                  <dt>Updated:</dt>
-                  <dd>{data.book.updated_date}</dd>
                 </dl>
                 <Mutation
                   mutation={DELETE_BOOK}
