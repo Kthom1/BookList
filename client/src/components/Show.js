@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import gql from "graphql-tag";
-import { Query, Mutation } from "react-apollo";
+import { Mutation } from "react-apollo";
 import { removeBook } from "../redux/actionCreators";
 import { connect } from "react-redux";
 

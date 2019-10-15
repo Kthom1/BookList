@@ -2,6 +2,7 @@ import {
   SET_BOOKS,
   SET_CURRENT_BOOK,
   ADD_BOOK,
+  UPDATE_BOOK,
   REMOVE_BOOK
 } from "../actionTypes";
 
@@ -21,6 +22,16 @@ export default function(state = initialState, action) {
     case ADD_BOOK: {
       return Object.assign({}, state, {
         books: [...state.books, action.payload]
+      });
+    }
+    case UPDATE_BOOK: {
+      const replaceIndex = state.books.findIndex(
+        book => book._id === action.payload._id
+      );
+      let cloneArray = [...state.books];
+      cloneArray[replaceIndex] = action.payload;
+      return Object.assign({}, state, {
+        books: cloneArray
       });
     }
     case REMOVE_BOOK: {

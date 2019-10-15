@@ -46,13 +46,14 @@ const App = props => {
                 {bookList.map((book, index) => (
                   <tr key={index}>
                     <td>
-                      <Link
+                      <span
+                        className="link-span"
                         onClick={() => {
                           addCurrentBookToState(book);
                         }}
                       >
                         {book.title}
-                      </Link>
+                      </span>
                     </td>
                     <td>{book.title}</td>
                   </tr>

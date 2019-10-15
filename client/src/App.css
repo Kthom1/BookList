@@ -20,3 +20,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+.link-span {
+  color: blue;
+}
+
+.link-span:hover {
+  color: #09d3ac;
+  cursor: pointer;
+}
