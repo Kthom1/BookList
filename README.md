@@ -2,9 +2,9 @@
 
 ## What is this?
 
-This is a basic CRUD application created using Express, Graphql, and MongoDB on the server-side.
+This is a basic CRUD application created using Express, Graphql, and MongoDB on the server side.
 
-The client-side uses React, React-Router, React-Redux, and Apollo-React. 
+The client side uses React, React-Router, React-Redux, and Apollo-React. 
 
 ## Usage 
 
