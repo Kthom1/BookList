@@ -2,7 +2,8 @@ import React from "react";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 import { Link } from "react-router-dom";
-
+import { connect } from "react-redux";
+import { addBook } from "../redux/actionCreators";
 const Create = props => {
   let title, author, description, published_year;
   const ADD_BOOK = gql`
@@ -19,11 +20,24 @@ const Create = props => {
         published_year: $published_year
       ) {
         _id
+        title
+        author
+        description
+        published_year
       }
     }
   `;
+
+  const addBookToState = book => {
+    props.dispatch(addBook(book));
+    props.history.push("/");
+  };
+
   return (
-    <Mutation mutation={ADD_BOOK} onCompleted={() => props.history.push("/")}>
+    <Mutation
+      mutation={ADD_BOOK}
+      onCompleted={({ addBook }) => addBookToState(addBook)}
+    >
       {(addBook, { loading, error }) => (
         <div className="container">
           <div className="panel panel-default">
@@ -116,4 +130,4 @@ const Create = props => {
   );
 };
 
-export default Create;
+export default connect()(Create);

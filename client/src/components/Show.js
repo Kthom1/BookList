@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "../App.css";
 import gql from "graphql-tag";
 import { Query, Mutation } from "react-apollo";
+import { removeBook } from "../redux/actionCreators";
+import { connect } from "react-redux";
 
 const Show = props => {
   const bookId = props.match.params.id;
@@ -25,6 +27,11 @@ const Show = props => {
       }
     }
   `;
+
+  const removeBookFromState = bookId => {
+    props.dispatch(removeBook(bookId));
+    props.history.push("/");
+  };
   return (
     <Query query={GET_BOOK} variables={{ bookId: bookId }}>
       {({ loading, error, data }) => {
@@ -52,7 +59,9 @@ const Show = props => {
                 <Mutation
                   mutation={DELETE_BOOK}
                   key={data.book._id}
-                  onCompleted={() => props.history.push("/")}
+                  onCompleted={({ removeBook }) =>
+                    removeBookFromState(removeBook._id)
+                  }
                 >
                   {(removeBook, { loading, error }) => (
                     <div>
@@ -87,4 +96,4 @@ const Show = props => {
   );
 };
 
-export default Show;
+export default connect()(Show);

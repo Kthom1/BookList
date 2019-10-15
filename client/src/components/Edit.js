@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import gql from "graphql-tag";
 import { Query, Mutation } from "react-apollo";
+import { connect } from "react-redux";
 
 const Edit = props => {
   const GET_BOOK = gql`
@@ -46,7 +47,7 @@ const Edit = props => {
           <Mutation
             mutation={UPDATE_BOOK}
             key={data.book._id}
-            onCompleted={() => props.history.push(`/`)}
+            onCompleted={() => props.history.push("/")}
           >
             {(updateBook, { loading, error }) => (
               <div className="container">
@@ -148,4 +149,4 @@ const Edit = props => {
   );
 };
 
-export default Edit;
+export default connect()(Edit);
