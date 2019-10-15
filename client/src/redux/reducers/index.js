@@ -1,13 +1,22 @@
-import { SET_BOOKS, ADD_BOOK, REMOVE_BOOK } from "../actionTypes";
+import {
+  SET_BOOKS,
+  SET_CURRENT_BOOK,
+  ADD_BOOK,
+  REMOVE_BOOK
+} from "../actionTypes";
 
 const initialState = {
-  books: []
+  books: [],
+  currentBook: {}
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_BOOKS: {
       return Object.assign({}, state, { books: action.payload });
+    }
+    case SET_CURRENT_BOOK: {
+      return Object.assign({}, state, { currentBook: action.payload });
     }
     case ADD_BOOK: {
       return Object.assign({}, state, {

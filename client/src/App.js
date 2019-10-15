@@ -4,7 +4,7 @@ import "./App.css";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { connect } from "react-redux";
-import { setBooks } from "./redux/actionCreators";
+import { setBooks, setCurrentBook } from "./redux/actionCreators";
 const App = props => {
   let [bookList, setBookList] = useState(props.books);
   const GET_BOOKS = gql`
@@ -19,6 +19,10 @@ const App = props => {
   const loadBooks = books => {
     props.dispatch(setBooks(books));
     setBookList(books);
+  };
+  const addCurrentBookToState = book => {
+    props.dispatch(setCurrentBook(book));
+    props.history.push("/show");
   };
   if (bookList.length > 0) {
     return (
@@ -42,7 +46,13 @@ const App = props => {
                 {bookList.map((book, index) => (
                   <tr key={index}>
                     <td>
-                      <Link to={`/show/${book._id}`}>{book.title}</Link>
+                      <Link
+                        onClick={() => {
+                          addCurrentBookToState(book);
+                        }}
+                      >
+                        {book.title}
+                      </Link>
                     </td>
                     <td>{book.title}</td>
                   </tr>
