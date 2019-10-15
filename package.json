@@ -1,0 +1,27 @@
+{
+  "name": "code-blog",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server-install": "npm install --prefix server",
+    "client-install": "npm install --prefix client",
+    "both-install": "concurrently \"npm run server-install\" \"npm run client-install\"",
+    "server": "npm start --prefix server",
+    "client": "npm start --prefix client",
+    "start": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kthom1/code-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kthom1/code-blog/issues"
+  },
+  "homepage": "https://github.com/Kthom1/code-blog#readme",
+  "dependencies": {
+    "concurrently": "^5.0.0"
+  }
+}
