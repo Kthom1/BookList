@@ -13,6 +13,8 @@ const App = props => {
         _id
         title
         author
+        description
+        published_year
       }
     }
   `;
